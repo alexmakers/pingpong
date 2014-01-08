@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Yo</title>
+  </head>
+  <body>
+    <h2>Player 1:</h2>
+    <h1 id='player1' data-player=1>0</h1>
+
+    <h2>Player 2:</h2>
+    <h1 id='player2' data-player=2>0</h1>
+
+    <script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
+    <script src='src/Player.js'></script>
+    <script src='src/Game.js'></script>
+    <script>
+      function updateScore(playerNum) {
+        var score = window.game['player' + playerNum].score;
+        $('#player' + playerNum).text(score);
+      }
+
+      function updateScoreboard() {
+        updateScore(1);
+        updateScore(2);
+      }
+
+      $(document).ready(function(){
+        var players = {
+          1: new Player(),
+          2: new Player()
+        }
+        window.game = new Game(players[1], players[2]);
+
+        $('#player1, #player2').on('click', function(){
+          var pNum = $(this).data('player');
+
+          players[pNum].scorePoint();
+          updateScoreboard()
+        });
+      });
+    </script> 
+  </body>
+</html>
