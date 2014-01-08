@@ -1,5 +1,5 @@
 function Player() {
-  this.score = 0;
+  this.score = 0; 
 }
 
 Player.prototype.scorePoint = function() {
